@@ -34,6 +34,9 @@ npm run start
 npm run validate
 ```
 
+## Database diagram
+![Database diagram](database_diagram.png)
+
 ## Author
 
 👤 **fabien-renaud**
