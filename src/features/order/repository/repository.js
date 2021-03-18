@@ -1,7 +1,8 @@
 import OrderModel from './model';
+import BookModel from '../../book/repository/model';
 
 const fetchOrders = () => {
-    return OrderModel.findAll();
+    return OrderModel.findAll({include: {model: BookModel, as: 'books'}});
 };
 
 const fetchOrderById = (id) => {
