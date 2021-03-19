@@ -20,10 +20,10 @@ const deleteOrder = (id) => {
 const checkoutOrder = async (id) => {
     const order = await OrderRepository.fetchOrderById(id);
     Promise.all(
-        order.books.map((orderBook) => {
-            return new Promise(async (resolve, reject) => {
+        order.books.map(async (orderBook) => {
+            const book = await BookRepository.fetchBookById(orderBook.id);
+            return new Promise((resolve, reject) => {
                 const quantity = orderBook.OrderBook.quantity;
-                const book = await BookRepository.fetchBookById(orderBook.id);
                 if (book.stock > quantity) resolve();
                 reject();
             });

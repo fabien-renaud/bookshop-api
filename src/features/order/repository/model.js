@@ -1,5 +1,5 @@
 import database from '../../../core/database';
-import {DATE, NOW, UUID, UUIDV4} from 'sequelize';
+import {DATE, UUID, UUIDV4} from 'sequelize';
 
 const OrderModel = database.define(
     'Order',
@@ -27,8 +27,8 @@ const OrderModel = database.define(
     }
 );
 
-OrderModel.afterBulkUpdate(order => {
-    console.log("TRIGGER");
+OrderModel.afterBulkUpdate(() => {
+    console.log('TRIGGER');
     // todo
 });
 
