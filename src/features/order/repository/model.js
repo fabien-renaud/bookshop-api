@@ -14,10 +14,9 @@ const OrderModel = database.define(
             type: UUID,
             allowNull: false
         },
-        created_at: {
+        checkout_at: {
             type: DATE,
-            allowNull: true,
-            defaultValue: NOW
+            allowNull: true
         }
     },
     {
@@ -27,5 +26,10 @@ const OrderModel = database.define(
         updatedAt: 'updated_at'
     }
 );
+
+OrderModel.afterBulkUpdate(order => {
+    console.log("TRIGGER");
+    // todo
+});
 
 export default OrderModel;

@@ -1,11 +1,14 @@
+import OrderRepository from '../../../repository';
 import OrderBookRepository from '../repository';
 
-const addBook = ({orderId, bookId, quantity}) => {
-    return OrderBookRepository.addBook({orderId, bookId, quantity});
+const addBook = async ({orderId, bookId, quantity}) => {
+    const order = await OrderRepository.fetchOrderById(orderId);
+    return OrderBookRepository.addBook(order, bookId, quantity);
 };
 
-const removeBook = ({orderId, bookId}) => {
-    return OrderBookRepository.removeBook({orderId, bookId});
+const removeBook = async ({orderId, bookId}) => {
+    const order = await OrderRepository.fetchOrderById(orderId);
+    return OrderBookRepository.removeBook(order, bookId);
 };
 
 export default {

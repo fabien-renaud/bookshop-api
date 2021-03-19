@@ -80,6 +80,25 @@ const routes = [
                 }
             }
         }
+    },
+    {
+        method: 'POST',
+        path: '/orders/{id}/checkout',
+        options: {
+            handler: OrderHandler.checkoutOrder,
+            description: 'Checkout order',
+            notes: 'Checkout order',
+            tags: ['api', 'order'],
+            validate: {
+                params: uuid
+            },
+            response: {
+                status: {
+                    200: undefined,
+                    400: undefined
+                }
+            }
+        }
     }
 ];
 

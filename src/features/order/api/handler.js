@@ -1,4 +1,4 @@
-import {badImplementation, conflict, notFound} from '@hapi/boom';
+import {badImplementation, badRequest, conflict, notFound} from '@hapi/boom';
 import OrderController from '../controller';
 
 const fetchOrders = (req, h) => {
@@ -29,9 +29,17 @@ const deleteOrder = (req, h) => {
     return OrderController.deleteOrder(id).then(() => h.response().code(204));
 };
 
+const checkoutOrder = (req, h) => {
+    const id = req.params.id;
+    return OrderController.checkoutOrder(id)
+        .then(() => h.response().code(200))
+        .catch(() => badRequest());
+};
+
 export default {
     fetchOrders,
     fetchOrderById,
     createOrder,
-    deleteOrder
+    deleteOrder,
+    checkoutOrder
 };

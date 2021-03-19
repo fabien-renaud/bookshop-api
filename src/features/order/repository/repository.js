@@ -6,7 +6,7 @@ const fetchOrders = () => {
 };
 
 const fetchOrderById = (id) => {
-    return OrderModel.findByPk(id);
+    return OrderModel.findByPk(id, {include: {model: BookModel, as: 'books'}});
 };
 
 const createOrder = (order) => {
@@ -20,9 +20,17 @@ const deleteOrder = (id) => {
     return OrderModel.destroy(options);
 };
 
+const checkoutOrder = (id) => {
+    const options = {
+        where: {id}
+    };
+    return OrderModel.update({checkout_at: new Date()}, options);
+};
+
 export default {
     fetchOrders,
     fetchOrderById,
     createOrder,
-    deleteOrder
+    deleteOrder,
+    checkoutOrder
 };
